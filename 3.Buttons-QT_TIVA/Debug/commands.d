@@ -30,6 +30,8 @@ commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/
 commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/list.h
 commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/queue.h
 commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/semphr.h
+commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/event_groups.h
+commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/timers.h
 commands.obj: ../inc/hw_memmap.h
 commands.obj: ../inc/hw_sysctl.h
 commands.obj: ../inc/hw_types.h
@@ -74,6 +76,8 @@ C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/list.h: 
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/queue.h: 
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/semphr.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/event_groups.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/timers.h: 
 ../inc/hw_memmap.h: 
 ../inc/hw_sysctl.h: 
 ../inc/hw_types.h: 

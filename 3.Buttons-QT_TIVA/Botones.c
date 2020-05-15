@@ -43,10 +43,14 @@
 #include <usb_dev_serial.h>
 #include <usb_commands_table.h>
 #include <timers.h>
-
+#include "event_groups.h"        // FreeRTOS: definiciones relacionadas con grupos de eventos
 
 #define LED1TASKPRIO 1
 #define LED1TASKSTACKSIZE 128
+
+static EventGroupHandle_t FlagsEventos;
+
+#define Traza_FLAG 0x0001
 
 uint32_t ui32Period;
 
@@ -397,6 +401,10 @@ static portTASK_FUNCTION( TempTask, pvParameters ){
                           }
 
            }
+           if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,1 * configTICK_RATE_HZ)==(Traza_FLAG)){
+               UARTprintf("Hola, soy paco y estoy hasta el nardo \r\n");
+           }
+
        }
 }
 static portTASK_FUNCTION( horaTask, pvParameters ){
@@ -565,7 +573,8 @@ int main(void)
         while(1);
 
     miSemaforo = xSemaphoreCreateBinary();
-    semaforoTraza = xSemaphoreCreateBinary();
+
+
 
 
 
@@ -609,6 +618,14 @@ int main(void)
 	    {
 	         while(1);
 	    }
+
+
+	   //Crea el grupo de eventos
+	        FlagsEventos = xEventGroupCreate();
+	        if( FlagsEventos == NULL )
+	        {
+	            while(1);
+	        }
 
 
 	//

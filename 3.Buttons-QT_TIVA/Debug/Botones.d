@@ -49,6 +49,7 @@ Botones.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stri
 Botones.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usb_dev_serial.h
 Botones.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usb_commands_table.h
 Botones.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/timers.h
+Botones.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/event_groups.h
 
 ../Botones.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -99,3 +100,4 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h:
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usb_dev_serial.h: 
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usb_commands_table.h: 
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/timers.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/event_groups.h: 

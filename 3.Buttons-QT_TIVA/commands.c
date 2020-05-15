@@ -20,6 +20,8 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
+#include "event_groups.h"        // FreeRTOS: definiciones relacionadas con grupos de eventos
+
 
 
 /* Standard TIVA includes */
@@ -41,7 +43,9 @@
 
 #include "drivers/rgb.h"
 
+static EventGroupHandle_t FlagsEventos;
 
+#define Traza_FLAG 0x0001
 
 
 // ==============================================================================
@@ -83,10 +87,12 @@ static int Cmd_traza(int argc, char *argv[])
             UARTprintf("traza on//off \r\n");
         }else{
             if (0==strncmp( argv[1], "on",2)){
+                xEventGroupSetBits(FlagsEventos,Traza_FLAG);
 
             }else{
                 if (0==strncmp( argv[1], "off",3)){
 
+                    xEventGroupClearBits(FlagsEventos,Traza_FLAG);
                 }else{
                     UARTprintf("traza on//off \r\n");
                 }
