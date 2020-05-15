@@ -5,7 +5,7 @@
 //
 //  Estructura de aplicacion basica para el desarrollo de aplicaciones genericas
 //  basada en la TIVA, en las que existe un intercambio de comandos con un interfaz
-//  gráfico (GUI) Qt.
+//  grÃ¡fico (GUI) Qt.
 //  La aplicacion se basa en un intercambio de comandos con ordenes e informacion, a traves  de la
 //  configuracion de un perfil CDC de USB (emulacion de puerto serie) y un protocolo
 //  de comunicacion con el PC que permite recibir ciertas ordenes y enviar determinados datos en respuesta.
@@ -15,7 +15,7 @@
 //
 //*****************************************************************************
 
-/* pruebo a ver si se sube bien, recibido..*/
+/* pruebo a ver si se sube bien, recibido.......*/
 #include<stdbool.h>
 #include<stdint.h>
 #include "inc/hw_memmap.h"       // TIVA: Definiciones del mapa de memoria
@@ -162,7 +162,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 		i32Numdatos=receive_frame(pui8Frame,MAX_FRAME_SIZE); //Esta funcion es bloqueante
 		if (i32Numdatos>0)
 		{	//Si no hay error, proceso la trama que ha llegado.
-			i32Numdatos=destuff_and_check_checksum(pui8Frame,i32Numdatos); // Primero, "destuffing" y comprobación checksum
+			i32Numdatos=destuff_and_check_checksum(pui8Frame,i32Numdatos); // Primero, "destuffing" y comprobaciÃ³n checksum
 			if (i32Numdatos<0)
 			{
 				//Error de checksum (PROT_ERROR_BAD_CHECKSUM), ignorar el paquete
@@ -230,7 +230,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 
 
 
-				    }else//Error de tamaño de parámetro
+				    }else//Error de tamaÃ±o de parÃ¡metro
 				    ui32Errors++; // Tratamiento del error
 				}
 				break;
@@ -240,7 +240,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0){
 				        RGBColorSet(parametro.valoresBrillo);
-				    }else//Error de tama�o de parametro
+				    }else//Error de tamaño de parametro
 				    ui32Errors++; // Tratamiento del error
 				}
 				break;
@@ -258,7 +258,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                     }else{
                     RGBEnable();
                     }
-                }else//Error de tama�o de parametro
+                }else//Error de tamaño de parametro
                 ui32Errors++; // Tratamiento del error
 				}
 				break;
@@ -304,7 +304,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                 {
                     PARAM_COMANDO_TEMP parametro;
                     if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
-                    if (parametro.modo_temp ==0){//modo per�dico
+                    if (parametro.modo_temp ==0){//modo peródico
 
                         TimerEnable(TIMER2_BASE, TIMER_A);//enciendo el timer2
                     }else{
@@ -549,15 +549,15 @@ int main(void)
 
     /**                                             Creacion de recursos IPC                                            **/
     // Cola para el envio del estado del puertoF (botones)
-    cola_freertos=xQueueCreate(3,sizeof(int32_t));  //espacio para 3items de tamaño ulong
+    cola_freertos=xQueueCreate(3,sizeof(int32_t));  //espacio para 3items de tamaÃ±o ulong
     if (NULL==cola_freertos)
         while(1);
     // Cola para el envio de la temperatura
-        cola_temperatura=xQueueCreate(3,sizeof(uint32_t));  //espacio para 3items de tamaño ulong
+        cola_temperatura=xQueueCreate(3,sizeof(uint32_t));  //espacio para 3items de tamaÃ±o ulong
         if (NULL==cola_temperatura)
             while(1);
     // Cola para el envio de la hora
-        cola_hora=xQueueCreate(3,sizeof(PARAM_COMANDO_HORA));  //espacio para 3items de tamaño ulong
+        cola_hora=xQueueCreate(3,sizeof(PARAM_COMANDO_HORA));  //espacio para 3items de tamaÃ±o ulong
         if (NULL==cola_hora)
             while(1);
 
@@ -577,7 +577,7 @@ int main(void)
 
     /**                                              Creacion de tareas                                                 **/
 
-    // Inicializa el sistema de depuraci�n por terminal UART
+    // Inicializa el sistema de depuración por terminal UART
     if (initCommandLine(512,tskIDLE_PRIORITY + 1) != pdTRUE)
     {
         while(1);
