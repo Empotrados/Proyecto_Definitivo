@@ -40,8 +40,7 @@
 #include "utils/uartstdioMod.h"
 
 #include "drivers/rgb.h"
-//variables globales
-SemaphoreHandle_t semaforoTraza;
+
 
 
 
@@ -74,6 +73,25 @@ static int Cmd_free(int argc, char *argv[])
     // Print some header text.
     //
     UARTprintf("%d bytes libres\r\n", xPortGetFreeHeapSize());
+
+    // Return success.
+    return(0);
+}
+static int Cmd_traza(int argc, char *argv[])
+{
+    if(argc != 2){
+            UARTprintf("traza on//off \r\n");
+        }else{
+            if (0==strncmp( argv[1], "on",2)){
+
+            }else{
+                if (0==strncmp( argv[1], "off",3)){
+
+                }else{
+                    UARTprintf("traza on//off \r\n");
+                }
+            }
+        }
 
     // Return success.
     return(0);
@@ -174,19 +192,6 @@ static int Cmd_help(int argc, char *argv[])
     //
     return(0);
 }
-// ==============================================================================
-// Implementa el comando "modo traza"
-// ==============================================================================
-static cmd_traza(int argc, char *argv[])
-{
-   if(argc!=3){
-       UARTprintf("comando mal utilizado, modo traza on/off \r\n");
-   }else{
-       if (0==strncmp( argv[2], "on",2)){
-           xSemaphoreGive(semaforoTraza);
-       }
-   }
-}
 
 
 // ==============================================================================
@@ -200,13 +205,14 @@ tCmdLineEntry g_psCmdTable[] =
     { "?",        Cmd_help,      "        : lo mismo que help" },
     { "cpu",      Cmd_cpu,       "      : Muestra el uso de  CPU " },
     { "free",     Cmd_free,      "     : Muestra la memoria libre" },
+    { "traza",    Cmd_traza,     "    : Activa modo traza" },
 #if ( configUSE_TRACE_FACILITY == 1 )
 	{ "tasks",    Cmd_tasks,     "    : Muestra informacion de las tareas" },
 #endif
 #if (configGENERATE_RUN_TIME_STATS)
 	{ "stats",    Cmd_stats,      "     : Muestra estadisticas de las tareas" },
 #endif
-	{"Modo traza[on/off]", cmd_traza,    "       :Muestra mensajes de depuracion"},
+
     { 0, 0, 0 }
 };
 

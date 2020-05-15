@@ -15,7 +15,7 @@
 //
 //*****************************************************************************
 
-/* HOLA PACO..*/
+
 #include<stdbool.h>
 #include<stdint.h>
 #include "inc/hw_memmap.h"       // TIVA: Definiciones del mapa de memoria
@@ -444,9 +444,6 @@ static portTASK_FUNCTION( horaTask, pvParameters ){
       }
 }
 
-static portTASK_FUNCTION( trazaTask, pvParameters ){
-
-}
 
 //*****************************************************************************
 //
@@ -612,11 +609,7 @@ int main(void)
 	    {
 	         while(1);
 	    }
-	// Crea la tarea que activa el modo traza
-	    if(xTaskCreate(trazaTask, "modo traza",512, NULL, tskIDLE_PRIORITY + 2, NULL) != pdTRUE)
-	        {
-	             while(1);
-	        }
+
 
 	//
 	// Arranca el  scheduler.  Pasamos a ejecutar las tareas que se hayan activado.

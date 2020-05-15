@@ -10,23 +10,23 @@ usblib/device/usbddfu-rt.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4
 usblib/device/usbddfu-rt.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h
 usblib/device/usbddfu-rt.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h
 usblib/device/usbddfu-rt.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_memmap.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_types.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_nvic.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/debug.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/usb.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/sysctl.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/systick.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/interrupt.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/rom.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/rom_map.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usblib.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usblibpriv.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usbdfu.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usb-ids.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/device/usbdevice.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/device/usbdevicepriv.h
-usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/device/usbddfu-rt.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_nvic.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/usb.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/systick.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom_map.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usblib.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usblibpriv.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usbdfu.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usb-ids.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/device/usbdevice.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/device/usbdevicepriv.h
+usblib/device/usbddfu-rt.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/device/usbddfu-rt.h
 
 ../usblib/device/usbddfu-rt.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -38,20 +38,20 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_types.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_memmap.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_nvic.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/debug.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/usb.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/systick.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/rom.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/rom_map.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usblib.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usblibpriv.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usbdfu.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/usb-ids.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/device/usbdevice.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/device/usbdevicepriv.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/usblib/device/usbddfu-rt.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_nvic.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/usb.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/systick.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom_map.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usblib.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usblibpriv.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usbdfu.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usb-ids.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/device/usbdevice.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/device/usbdevicepriv.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/device/usbddfu-rt.h: 

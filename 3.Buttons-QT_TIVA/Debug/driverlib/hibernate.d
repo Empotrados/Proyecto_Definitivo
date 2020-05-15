@@ -15,14 +15,14 @@ driverlib/hibernate.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/
 driverlib/hibernate.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/linkage.h
 driverlib/hibernate.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/abi_prefix.h
 driverlib/hibernate.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/xlocale/_time.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_hibernate.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_ints.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_sysctl.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_types.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/debug.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/hibernate.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/interrupt.h
-driverlib/hibernate.obj: C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/sysctl.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_hibernate.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_sysctl.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/hibernate.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h
+driverlib/hibernate.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h
 
 ../driverlib/hibernate.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -39,11 +39,11 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/_ti_config.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/linkage.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/abi_prefix.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/xlocale/_time.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_hibernate.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_ints.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_sysctl.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/debug.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/hibernate.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
-C:/Users/p-l-b/Desktop/Workspace_dia4/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_hibernate.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_sysctl.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/hibernate.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
