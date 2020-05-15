@@ -15,7 +15,7 @@
 //
 //*****************************************************************************
 
-/* HOLA PACO*/
+/* HOLA PACO..*/
 #include<stdbool.h>
 #include<stdint.h>
 #include "inc/hw_memmap.h"       // TIVA: Definiciones del mapa de memoria
