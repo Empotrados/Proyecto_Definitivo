@@ -48,13 +48,13 @@
 #define LED1TASKPRIO 1
 #define LED1TASKSTACKSIZE 128
 
-//EventGroupHandle_t FlagsEventos;
+EventGroupHandle_t FlagsEventos;
 
-//#define Traza_FLAG 0x0001
-/*#define Sondeo_Flag 0x002
+#define Traza_FLAG 0x0001
+#define Sondeo_Flag 0x002
 #define Interrupcion_Flag 0x004
 #define izquierda 0x008
-#define derecha 0x010*/
+#define derecha 0x010
 
 uint32_t ui32Period;
 
@@ -219,7 +219,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				case COMANDO_LEDS:
 				{
 				    PARAM_COMANDO_LEDS parametro;
-				    /*if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
+				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
 				    {
 
 				        if(parametro.leds.fRed==1){
@@ -259,7 +259,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 
 
 				    }else//Error de tamaÃ±o de parÃ¡metro
-				    ui32Errors++; // Tratamiento del error*/
+				    ui32Errors++; // Tratamiento del error
 				}
 				break;
 				case COMANDO_BRILLO:
@@ -267,12 +267,12 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				    PARAM_COMANDO_BRILLO parametro;
 
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0){
-				        RGBColorSet(parametro.valoresBrillo);}
-				       /* if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+				        RGBColorSet(parametro.valoresBrillo);
+				        if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                            UARTprintf(" rgb %d %d %d \r\n",parametro.valoresBrillo[0],parametro.valoresBrillo[1],parametro.valoresBrillo[2]);
                         }
 				    }else//Error de tamaño de parametro
-				    ui32Errors++; // Tratamiento del error*/
+				    ui32Errors++; // Tratamiento del error
 				}
 				break;
 				case COMANDO_MODO:
@@ -309,7 +309,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				case COMANDO_SONDEO:
 				{
 
-				    /*int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
+				    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
 
 				    if((i32Status & LEFT_BUTTON) == 0)
 				    {
@@ -318,14 +318,6 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				    if((i32Status & RIGHT_BUTTON) == 0){
 				        xEventGroupSetBits(FlagsEventos,Sondeo_Flag |derecha);
 				          }
-
-				   /* i32Numdatos=create_frame(pui8Frame,COMANDO_SONDEO,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
-				         if (i32Numdatos>=0)
-				           {
-				              xSemaphoreTake(mutexUSB,portMAX_DELAY);
-				              send_frame(pui8Frame,i32Numdatos);
-		                      xSemaphoreGive(mutexUSB);
-				           }*/
 
 
 				}break;
@@ -383,17 +375,18 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 
 // Codigo para enviar los botones pulsados
 static portTASK_FUNCTION( ButtonsTask, pvParameters ){
-    /*uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
+    uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
     PARAM_COMANDO_BUTTONS parametro;
     int32_t i32Numdatos;
     //
     // Loop forever.
     //
 
-
+while(1){
     EventBits_t xEventGroupValue;
-    xEventGroupValue = xEventGroupWaitBits(FlagsEventos,Sondeo_Flag|Interrupcion_Flag,pdTRUE,pdFALSE,0 * configTICK_RATE_HZ);
+    xEventGroupValue = xEventGroupWaitBits(FlagsEventos,Sondeo_Flag|Interrupcion_Flag,pdTRUE,pdFALSE,portMAX_DELAY);
     if( ( xEventGroupValue & Sondeo_Flag ) != 0 ){
+        UARTprintf("entro en taarea botones y sondeo\r\n");
         parametro.presencia_intrusion =0;
         if( ( xEventGroupValue & izquierda ) != 0 ){
             parametro.button.fLeft = 1;
@@ -405,16 +398,20 @@ static portTASK_FUNCTION( ButtonsTask, pvParameters ){
         }
     }
     if( ( xEventGroupValue & Interrupcion_Flag ) != 0 ){
+
             parametro.presencia_intrusion =1;
             if( ( xEventGroupValue & izquierda ) != 0 ){
+                UARTprintf("entro en taarea botones interrupcion boton izq \r\n");
                 parametro.button.fLeft = 1;
                 xEventGroupClearBits(FlagsEventos,izquierda);
             }
             if( ( xEventGroupValue & derecha ) != 0 ){
+                UARTprintf("entro en taarea botones interrupcion boton derecho \r\n");
                 parametro.button.fRight = 1;
                 xEventGroupClearBits(FlagsEventos,derecha);
             }
         }
+}
     i32Numdatos=create_frame(pui8Frame,COMANDO_BUTTONS,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
     if (i32Numdatos>=0)
     {
@@ -422,6 +419,7 @@ static portTASK_FUNCTION( ButtonsTask, pvParameters ){
        send_frame(pui8Frame,i32Numdatos);
        xSemaphoreGive(mutexUSB);
     }
+
 
 
     /*while(1)
@@ -461,9 +459,9 @@ static portTASK_FUNCTION( TempTask, pvParameters ){
                           }
 
            }
-           /*if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+           if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                UARTprintf("temperatura %d �C \r\n",parametro.temperatura);
-           }*/
+           }
 
        }
 }
@@ -681,11 +679,11 @@ int main(void)
 
 
 	   //Crea el grupo de eventos
-	       /* FlagsEventos = xEventGroupCreate();
+	        FlagsEventos = xEventGroupCreate();
 	        if( FlagsEventos == NULL )
 	        {
 	            while(1);
-	        }*/
+	        }
 
 
 	//
@@ -727,15 +725,14 @@ void ADCSequence1Handler (void){
 void GPIOFIntHandler(void)
 {
 
-
-    /*int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
-    if((i32Status & LEFT_BUTTON) == 0){
-        xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag |izquierda);
+    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
+    if (!(i32Status & LEFT_BUTTON)){
+        xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag |izquierda,&higherPriorityTaskWoken);
     }
-    if((i32Status & RIGHT_BUTTON) == 0){
-        xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag |derecha);
+    if (!(i32Status & RIGHT_BUTTON)){
+        xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag |derecha,&higherPriorityTaskWoken);
     }
     MAP_GPIOIntClear(GPIO_PORTF_BASE,ALL_BUTTONS);              //limpiamos flags
     //Cesion de control de CPU si se ha despertado una tarea de mayor prioridad
-    portEND_SWITCHING_ISR(higherPriorityTaskWoken);*/
+    portEND_SWITCHING_ISR(higherPriorityTaskWoken);
 }
