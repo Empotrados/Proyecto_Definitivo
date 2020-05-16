@@ -57,6 +57,7 @@ typedef union {
         uint8_t fRight:1;
     } PACKED button;
     uint8_t  ui8Buttons;
+    uint8_t presencia_intrusion;
 } PACKED PARAM_COMANDO_BUTTONS;
 typedef struct{
     uint32_t modo_int;

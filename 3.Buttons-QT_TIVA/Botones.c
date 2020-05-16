@@ -48,9 +48,13 @@
 #define LED1TASKPRIO 1
 #define LED1TASKSTACKSIZE 128
 
-static EventGroupHandle_t FlagsEventos;
+//EventGroupHandle_t FlagsEventos;
 
-#define Traza_FLAG 0x0001
+//#define Traza_FLAG 0x0001
+/*#define Sondeo_Flag 0x002
+#define Interrupcion_Flag 0x004
+#define izquierda 0x008
+#define derecha 0x010*/
 
 uint32_t ui32Period;
 
@@ -215,27 +219,47 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				case COMANDO_LEDS:
 				{
 				    PARAM_COMANDO_LEDS parametro;
-				   //uint32_t g_pui32Colors[3] = { 0, 0, 0};
-				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
+				    /*if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
 				    {
 
 				        if(parametro.leds.fRed==1){
 				            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
-				        }else
+				            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                               UARTprintf(" led rojo (gpio) encendido \r\n");
+				            }
+				        }else{
 				            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);
+				             if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                               UARTprintf(" led rojo (gpio) apagado \r\n");
+				             }
+				        }
 				        if(parametro.leds.fGreen==1){
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
-                        }else
+                            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                               UARTprintf(" led verde (gpio) encendido \r\n");
+                            }
+                        }else{
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
+				            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                               UARTprintf(" led verde (gpio) apagado \r\n");
+                            }
+                        }
 				        if(parametro.leds.fBlue==1){
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
-                        }else
+                            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                               UARTprintf(" led azul (gpio) encendido \r\n");
+                            }
+                        }else{
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
+                            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                               UARTprintf(" led azul (gpio) apagado \r\n");
+                            }
 
+                        }
 
 
 				    }else//Error de tamaÃ±o de parÃ¡metro
-				    ui32Errors++; // Tratamiento del error
+				    ui32Errors++; // Tratamiento del error*/
 				}
 				break;
 				case COMANDO_BRILLO:
@@ -243,9 +267,12 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				    PARAM_COMANDO_BRILLO parametro;
 
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0){
-				        RGBColorSet(parametro.valoresBrillo);
+				        RGBColorSet(parametro.valoresBrillo);}
+				       /* if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                           UARTprintf(" rgb %d %d %d \r\n",parametro.valoresBrillo[0],parametro.valoresBrillo[1],parametro.valoresBrillo[2]);
+                        }
 				    }else//Error de tamaño de parametro
-				    ui32Errors++; // Tratamiento del error
+				    ui32Errors++; // Tratamiento del error*/
 				}
 				break;
 				case COMANDO_MODO:
@@ -281,25 +308,24 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                 break;
 				case COMANDO_SONDEO:
 				{
-				    PARAM_COMANDO_BUTTONS parametro;
-				    parametro.ui8Buttons=0;
-				    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
+
+				    /*int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
 
 				    if((i32Status & LEFT_BUTTON) == 0)
 				    {
-				        parametro.button.fLeft = 1;
+				        xEventGroupSetBits(FlagsEventos,Sondeo_Flag |izquierda);
 				    }
 				    if((i32Status & RIGHT_BUTTON) == 0){
-				         parametro.button.fRight = 1;
+				        xEventGroupSetBits(FlagsEventos,Sondeo_Flag |derecha);
 				          }
 
-				    i32Numdatos=create_frame(pui8Frame,COMANDO_SONDEO,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
+				   /* i32Numdatos=create_frame(pui8Frame,COMANDO_SONDEO,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
 				         if (i32Numdatos>=0)
 				           {
 				              xSemaphoreTake(mutexUSB,portMAX_DELAY);
 				              send_frame(pui8Frame,i32Numdatos);
 		                      xSemaphoreGive(mutexUSB);
-				           }
+				           }*/
 
 
 				}break;
@@ -357,14 +383,48 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 
 // Codigo para enviar los botones pulsados
 static portTASK_FUNCTION( ButtonsTask, pvParameters ){
-    uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
+    /*uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
     PARAM_COMANDO_BUTTONS parametro;
     int32_t i32Numdatos;
-    int32_t i32Status;
     //
     // Loop forever.
     //
-    while(1)
+
+
+    EventBits_t xEventGroupValue;
+    xEventGroupValue = xEventGroupWaitBits(FlagsEventos,Sondeo_Flag|Interrupcion_Flag,pdTRUE,pdFALSE,0 * configTICK_RATE_HZ);
+    if( ( xEventGroupValue & Sondeo_Flag ) != 0 ){
+        parametro.presencia_intrusion =0;
+        if( ( xEventGroupValue & izquierda ) != 0 ){
+            parametro.button.fLeft = 1;
+            xEventGroupClearBits(FlagsEventos,izquierda);
+        }
+        if( ( xEventGroupValue & derecha ) != 0 ){
+            parametro.button.fRight = 1;
+            xEventGroupClearBits(FlagsEventos,derecha);
+        }
+    }
+    if( ( xEventGroupValue & Interrupcion_Flag ) != 0 ){
+            parametro.presencia_intrusion =1;
+            if( ( xEventGroupValue & izquierda ) != 0 ){
+                parametro.button.fLeft = 1;
+                xEventGroupClearBits(FlagsEventos,izquierda);
+            }
+            if( ( xEventGroupValue & derecha ) != 0 ){
+                parametro.button.fRight = 1;
+                xEventGroupClearBits(FlagsEventos,derecha);
+            }
+        }
+    i32Numdatos=create_frame(pui8Frame,COMANDO_BUTTONS,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
+    if (i32Numdatos>=0)
+    {
+       xSemaphoreTake(mutexUSB,portMAX_DELAY);
+       send_frame(pui8Frame,i32Numdatos);
+       xSemaphoreGive(mutexUSB);
+    }
+
+
+    /*while(1)
     {
         if (xQueueReceive(cola_freertos,&i32Status,portMAX_DELAY)==pdTRUE)
         {
@@ -381,7 +441,7 @@ static portTASK_FUNCTION( ButtonsTask, pvParameters ){
                 xSemaphoreGive(mutexUSB);
             }
         }
-    }
+    }*/
 }
 // Codigo para enviar la temperatura
 static portTASK_FUNCTION( TempTask, pvParameters ){
@@ -401,9 +461,9 @@ static portTASK_FUNCTION( TempTask, pvParameters ){
                           }
 
            }
-           if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,1 * configTICK_RATE_HZ)==(Traza_FLAG)){
-               UARTprintf("Hola, soy paco y estoy hasta el nardo \r\n");
-           }
+           /*if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+               UARTprintf("temperatura %d �C \r\n",parametro.temperatura);
+           }*/
 
        }
 }
@@ -621,11 +681,11 @@ int main(void)
 
 
 	   //Crea el grupo de eventos
-	        FlagsEventos = xEventGroupCreate();
+	       /* FlagsEventos = xEventGroupCreate();
 	        if( FlagsEventos == NULL )
 	        {
 	            while(1);
-	        }
+	        }*/
 
 
 	//
@@ -666,10 +726,16 @@ void ADCSequence1Handler (void){
 }
 void GPIOFIntHandler(void)
 {
-    signed portBASE_TYPE higherPriorityTaskWoken=pdFALSE;   //Hay que inicializarlo a False!!
-    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
-    xQueueSendFromISR (cola_freertos,&i32Status,&higherPriorityTaskWoken);
+
+
+    /*int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
+    if((i32Status & LEFT_BUTTON) == 0){
+        xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag |izquierda);
+    }
+    if((i32Status & RIGHT_BUTTON) == 0){
+        xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag |derecha);
+    }
     MAP_GPIOIntClear(GPIO_PORTF_BASE,ALL_BUTTONS);              //limpiamos flags
     //Cesion de control de CPU si se ha despertado una tarea de mayor prioridad
-    portEND_SWITCHING_ISR(higherPriorityTaskWoken);
+    portEND_SWITCHING_ISR(higherPriorityTaskWoken);*/
 }

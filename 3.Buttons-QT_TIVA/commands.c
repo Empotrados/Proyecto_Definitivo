@@ -43,7 +43,8 @@
 
 #include "drivers/rgb.h"
 
-static EventGroupHandle_t FlagsEventos;
+extern  EventGroupHandle_t FlagsEventos;
+
 
 #define Traza_FLAG 0x0001
 
@@ -88,7 +89,6 @@ static int Cmd_traza(int argc, char *argv[])
         }else{
             if (0==strncmp( argv[1], "on",2)){
                 xEventGroupSetBits(FlagsEventos,Traza_FLAG);
-
             }else{
                 if (0==strncmp( argv[1], "off",3)){
 
