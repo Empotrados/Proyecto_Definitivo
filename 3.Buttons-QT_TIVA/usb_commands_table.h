@@ -51,13 +51,10 @@ typedef struct{
     uint8_t Vmodo;
 }PACKED PARAM_COMANDO_MODO;
 
-typedef union {
-    struct {
-        uint8_t fLeft:1;
-        uint8_t fRight:1;
-    } PACKED button;
-    uint8_t  ui8Buttons;
-    uint8_t presencia_intrusion;
+typedef struct{
+    bool der;
+    bool izq;
+    uint8_t  sondeo_interrupcion;
 } PACKED PARAM_COMANDO_BUTTONS;
 typedef struct{
     uint32_t modo_int;
