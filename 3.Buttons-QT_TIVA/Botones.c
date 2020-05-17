@@ -300,9 +300,15 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                     PARAM_COMANDO_INTRUSION parametro;
                     if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
                     if(parametro.modo_int==0){
+                        if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                         UARTprintf("Modo sondeo activado:  \r\n");
+                       }
                          MAP_GPIOIntDisable(GPIO_PORTF_BASE,ALL_BUTTONS);
                          MAP_IntDisable(INT_GPIOF);//deshabilitamos interrupciones del GPIO
                       }else{
+                          if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                             UARTprintf("Modo intrusion activado:  \r\n");
+                           }
                             MAP_GPIOIntEnable(GPIO_PORTF_BASE,ALL_BUTTONS);
                             MAP_IntEnable(INT_GPIOF);
                             }
@@ -312,7 +318,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				{
 
 				    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
-
+				    xEventGroupSetBits(FlagsEventos, Sondeo_Flag );
                     if ((i32Status & LEFT_BUTTON)==0)
                         {
                             //Activa los flags BUTTON1a_FLAG y BUTTON1b_FLAG
@@ -333,7 +339,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                             //Activa los flags BUTTON1a_FLAG y BUTTON1b_FLAG
                             xEventGroupSetBits(FlagsEventos, izquierda_OFF );
                         }
-                    xEventGroupSetBits(FlagsEventos, Sondeo_Flag );
+
 
 				}break;
 
@@ -397,39 +403,52 @@ static portTASK_FUNCTION( ButtonsTask, pvParameters ){
     int32_t xEventGroupValue;
 
     while(1){
-        xEventGroupValue=xEventGroupWaitBits(FlagsEventos,Sondeo_Flag|Interrupcion_Flag,pdFALSE,pdFALSE,portMAX_DELAY);
+        xEventGroupValue=xEventGroupWaitBits(FlagsEventos,Sondeo_Flag|Interrupcion_Flag|izquierda|derecha|izquierda_OFF|derecha_OFF,pdFALSE,pdFALSE,portMAX_DELAY);
         if( ( xEventGroupValue & Sondeo_Flag ) == Sondeo_Flag ){//viene de sondeo
             parametro.sondeo_interrupcion =0;
             xEventGroupClearBits(FlagsEventos,Sondeo_Flag);
         }
         if( ( xEventGroupValue & Interrupcion_Flag ) ==Interrupcion_Flag){
-                parametro.sondeo_interrupcion =1;
-                xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);}
-                if( ( xEventGroupValue & izquierda ) ==izquierda ){
-                    parametro.izq= true;
-                    xEventGroupClearBits(FlagsEventos,izquierda);
+            parametro.sondeo_interrupcion =1;
+            xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);
+        }
+        if( ( xEventGroupValue & izquierda ) ==izquierda ){
+            parametro.izq= true;
+            if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
+               UARTprintf(" boton izquierdo pulsado \r\n");
+            }
+            xEventGroupClearBits(FlagsEventos,izquierda);
+        }
+        if( ( xEventGroupValue & derecha ) ==derecha ){
+            parametro.der=true;
+            if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
+               UARTprintf(" boton derecho pulsado \r\n");
+            }
+            xEventGroupClearBits(FlagsEventos,derecha);
+        }
+        if( ( xEventGroupValue & derecha_OFF ) ==derecha_OFF ){
+                parametro.der=false;
+                if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
+                  UARTprintf(" boton derecho NO pulsado \r\n");
                 }
-                if( ( xEventGroupValue & derecha ) ==derecha ){
-                    parametro.der=true;
-                    xEventGroupClearBits(FlagsEventos,derecha);
+                xEventGroupClearBits(FlagsEventos,derecha_OFF);
+        }
+        if( ( xEventGroupValue & izquierda_OFF ) ==izquierda_OFF ){
+                parametro.izq= false;
+                if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
+                  UARTprintf(" boton izquierdo NO pulsado \r\n");
                 }
-                if( ( xEventGroupValue & derecha_OFF ) ==derecha_OFF ){
-                        parametro.der=false;
-                        xEventGroupClearBits(FlagsEventos,derecha_OFF);
-                }
-                if( ( xEventGroupValue & izquierda_OFF ) ==izquierda_OFF ){
-                        parametro.izq= false;
-                        xEventGroupClearBits(FlagsEventos,izquierda_OFF);
-                }
+                xEventGroupClearBits(FlagsEventos,izquierda_OFF);
+        }
 
-                //envio de datos a qt
-                i32Numdatos=create_frame(pui8Frame,COMANDO_BUTTONS,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
-                if (i32Numdatos>=0)
-                {
-                    xSemaphoreTake(mutexUSB,portMAX_DELAY);
-                    send_frame(pui8Frame,i32Numdatos);
-                    xSemaphoreGive(mutexUSB);
-                }
+        //envio de datos a qt
+        i32Numdatos=create_frame(pui8Frame,COMANDO_BUTTONS,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
+        if (i32Numdatos>=0)
+        {
+            xSemaphoreTake(mutexUSB,portMAX_DELAY);
+            send_frame(pui8Frame,i32Numdatos);
+            xSemaphoreGive(mutexUSB);
+        }
 
     }//fin del while
 }
