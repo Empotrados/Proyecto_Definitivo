@@ -21,6 +21,7 @@ typedef enum {
     COMANDO_INTRUSION,
     COMANDO_TEMP,
     COMANDO_HORA,
+    COMANDO_TERMINAL,
     //etc, etc...
 } commandTypes;
 
@@ -69,6 +70,14 @@ typedef struct{
     int minuto;
     int segundo;
 } PACKED PARAM_COMANDO_HORA;
+
+typedef struct{
+    uint8_t cmd;
+    uint8_t modo;
+    uint8_t intesidad;
+    uint8_t rgb[3];
+    uint8_t led[2];
+} PACKED PARAM_COMANDO_TERMINAL;
 
 //#pragma pack()    //...Pero solo para los comandos que voy a intercambiar, no para el resto
 

@@ -17,6 +17,7 @@ commands.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/std
 commands.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h
 commands.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdlib.h
 commands.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/assert.h
+commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usb_commands_table.h
 commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/FreeRTOS.h
 commands.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stddef.h
 commands.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOSConfig.h
@@ -63,6 +64,7 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdarg.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdlib.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/assert.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usb_commands_table.h: 
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOS/Source/include/FreeRTOS.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stddef.h: 
 C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/FreeRTOSConfig.h: 

@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <usb_commands_table.h>
 
 /* FreeRTOS includes */
 #include "FreeRTOS.h"
@@ -47,6 +48,9 @@ extern  EventGroupHandle_t FlagsEventos;
 
 
 #define Traza_FLAG 0x0001
+QueueHandle_t cola_terminal;
+
+extern portBASE_TYPE higherPriorityTaskWoken;
 
 
 // ==============================================================================
@@ -108,17 +112,23 @@ static int Cmd_gpio_pwm(int argc, char *argv[])
     if(argc != 2){
             UARTprintf("mode gpio//pwm  \r\n");
         }else{
+            PARAM_COMANDO_TERMINAL parametro;
+            parametro.cmd=0;
             if (0==strncmp( argv[1], "gpio",2)){
                 RGBDisable();
                 GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
-
+                parametro.modo=0;
             }else{
                 if (0==strncmp( argv[1], "pwm",2)){
                     RGBEnable();
+                    parametro.modo=1;
                 }else{
                     UARTprintf("error de comando. gpio//pwm \r\n");
                 }
             }
+
+
+            xQueueSend (cola_terminal,&parametro,higherPriorityTaskWoken);   //Escribe en la cola freeRTOS
 
         }
 

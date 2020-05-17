@@ -69,6 +69,7 @@ SemaphoreHandle_t miSemaforo = NULL,semaforoTraza;
 xQueueHandle cola_freertos;
 xQueueHandle cola_temperatura;
 xQueueHandle cola_hora;
+xQueueHandle cola_terminal;
 
 
 TimerHandle_t xTimer;
@@ -524,6 +525,20 @@ static portTASK_FUNCTION( horaTask, pvParameters ){
 }
 // Codigo para enviar los cambios realizados por terminal
 static portTASK_FUNCTION( TerminalTask, pvParameters ){
+    PARAM_COMANDO_TERMINAL parametro;
+    uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
+    int32_t i32Numdatos;
+    while(1){
+        if (xQueueReceive(cola_terminal,&parametro,portMAX_DELAY)==pdTRUE){
+            i32Numdatos=create_frame(pui8Frame,COMANDO_TERMINAL,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
+          if (i32Numdatos>=0)
+          {
+              xSemaphoreTake(mutexUSB,portMAX_DELAY);
+              send_frame(pui8Frame,i32Numdatos);
+              xSemaphoreGive(mutexUSB);
+          }
+        }
+    }
 
 }
 
@@ -638,6 +653,10 @@ int main(void)
     // Cola para el envio de la hora
         cola_hora=xQueueCreate(3,sizeof(PARAM_COMANDO_HORA));  //espacio para 3items de tamaÃ±o ulong
         if (NULL==cola_hora)
+            while(1);
+    // Cola para el envio del estado de terminal
+        cola_terminal = xQueueCreate(1,sizeof(PARAM_COMANDO_TERMINAL));  //espacio para 3items de tamaÃ±o ulong
+        if (NULL==cola_terminal)
             while(1);
 
     // Mutex para proteccion del canal USB (por si 2 tareas deciden usarlo a la vez!)
