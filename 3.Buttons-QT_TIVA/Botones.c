@@ -522,7 +522,10 @@ static portTASK_FUNCTION( horaTask, pvParameters ){
 
       }
 }
+// Codigo para enviar los cambios realizados por terminal
+static portTASK_FUNCTION( TerminalTask, pvParameters ){
 
+}
 
 //*****************************************************************************
 //
@@ -686,9 +689,14 @@ int main(void)
 	}
 	// Crea la tarea que envia la hora
 	if(xTaskCreate(horaTask, "hora",512, NULL, tskIDLE_PRIORITY + 2, NULL) != pdTRUE)
-	    {
-	         while(1);
-	    }
+    {
+         while(1);
+    }
+	// Crea la tarea que envia los cambios realizados por terminal
+    if(xTaskCreate(TerminalTask, "terminal envios",512, NULL, tskIDLE_PRIORITY + 2, NULL) != pdTRUE)
+    {
+         while(1);
+    }
 
 
 	   //Crea el grupo de eventos

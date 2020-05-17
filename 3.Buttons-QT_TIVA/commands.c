@@ -103,6 +103,131 @@ static int Cmd_traza(int argc, char *argv[])
     return(0);
 }
 
+static int Cmd_gpio_pwm(int argc, char *argv[])
+{
+    if(argc != 2){
+            UARTprintf("mode gpio//pwm  \r\n");
+        }else{
+            if (0==strncmp( argv[1], "gpio",2)){
+                RGBDisable();
+                GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
+
+            }else{
+                if (0==strncmp( argv[1], "pwm",2)){
+                    RGBEnable();
+                }else{
+                    UARTprintf("error de comando. gpio//pwm \r\n");
+                }
+            }
+
+        }
+
+    // Return success.
+    return(0);
+}
+// ==============================================================================
+// Implementa el comando "intensity"
+// ==============================================================================
+static int Cmd_intensity(int argc, char *argv[])
+{
+    if(argc !=2){
+        //si los parametros no son suficientes, muestro ayuda
+        UARTprintf(" intensity [X]\r\n");
+    }else{
+        float fIntensity = atof(argv[1]);
+        RGBIntensitySet(fIntensity);
+    }
+return 0;
+}
+
+// ==============================================================================
+// Implementa el comando "RGB"
+// ==============================================================================
+static int Cmd_rgb(int argc, char *argv[])
+{
+    uint32_t arrayRGB[3];
+
+    if (argc != 4)
+    {
+        //Si los par�metros no son suficientes, muestro la ayuda
+        UARTprintf(" rgb [red] [green] [blue]\r\n");
+    }
+    else
+    {
+
+
+        arrayRGB[0]=strtoul(argv[1], NULL, 10)<<8;
+        arrayRGB[1]=strtoul(argv[2], NULL, 10)<<8;
+        arrayRGB[2]=strtoul(argv[3], NULL, 10)<<8;
+
+        if ((arrayRGB[0]>=65535)||(arrayRGB[1]>=65535)||(arrayRGB[2]>=65535))
+        {
+
+            UARTprintf(" \r\n");
+        }
+        else{
+            RGBColorSet(arrayRGB);
+        }
+
+    }
+
+
+    return 0;
+}
+
+// ==============================================================================
+// Implementa el comando "LED"
+// ==============================================================================
+static int Cmd_led(int argc, char *argv[])
+{
+    if (argc != 3){
+        //Si los parametros no son suficientes o son demasiados, muestro la ayuda
+        UARTprintf(" led [color] [on|off]\r\n");
+    }else{
+        //seconds = strtoul(argv[1], NULL, 10);
+
+        if (0==strncmp( argv[2], "on",2))
+        {
+            if(0==strncmp( argv[1], "verde",5)){
+                UARTprintf("LED verde on \r\n");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
+            }
+            if(0==strncmp( argv[1], "azul",4)){
+                UARTprintf("LED azul on \r\n");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
+            }
+            if(0==strncmp( argv[1], "rojo",4)){
+                 UARTprintf("LED rojo on \r\n");
+                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
+            }
+        }
+        else if (0==strncmp( argv[2], "off",3))
+        {
+            if(0==strncmp( argv[1], "verde",5)){
+                UARTprintf("LED verde off \r\n");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
+            }
+            if(0==strncmp( argv[1], "azul",4)){
+                UARTprintf("LED azul off \r\n");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
+            }
+            if(0==strncmp( argv[1], "rojo",4)){
+                UARTprintf("LED rojo off \r\n");
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);
+            }
+        }
+        else
+        {
+            //Si el parametro no es correcto, muestro la ayuda
+            UARTprintf(" led [on|off]\r\n");
+        }
+
+    }
+
+
+    return 0;
+}
+
 // ==============================================================================
 // Implementa el comando task. S�lo es posible si la opci�n configUSE_TRACE_FACILITY de FreeRTOS est� habilitada
 // ==============================================================================
@@ -212,6 +337,10 @@ tCmdLineEntry g_psCmdTable[] =
     { "cpu",      Cmd_cpu,       "      : Muestra el uso de  CPU " },
     { "free",     Cmd_free,      "     : Muestra la memoria libre" },
     { "traza",    Cmd_traza,     "    : Activa modo traza" },
+    { "mode",    Cmd_gpio_pwm,     "    : cambia de modo" },
+    { "intensity",Cmd_intensity,      "     : Cambia la intensidad de los leds" },
+    { "rgb",      Cmd_rgb,       "      : Establece el color RGB de cada led" },
+    { "led",      Cmd_led,       "      : Apaga y enciende en modo gpio el led deseado" },
 #if ( configUSE_TRACE_FACILITY == 1 )
 	{ "tasks",    Cmd_tasks,     "    : Muestra informacion de las tareas" },
 #endif
