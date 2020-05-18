@@ -236,7 +236,7 @@ static int Cmd_led(int argc, char *argv[])
                 UARTprintf("LED azul off \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
                 parametro.led[0] = 2;
-                parametro.led[1] = 0;
+                parametro.led[1] = 0;// prueba
             }
             if(0==strncmp( argv[1], "rojo",4)){
                 UARTprintf("LED rojo off \r\n");
