@@ -10,12 +10,12 @@ usblib/host/usbhscsi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS
 usblib/host/usbhscsi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h
 usblib/host/usbhscsi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h
 usblib/host/usbhscsi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h
-usblib/host/usbhscsi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
-usblib/host/usbhscsi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usblib.h
-usblib/host/usbhscsi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usbmsc.h
-usblib/host/usbhscsi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/host/usbhost.h
-usblib/host/usbhscsi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/host/usbhmsc.h
-usblib/host/usbhscsi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/host/usbhscsi.h
+usblib/host/usbhscsi.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_types.h
+usblib/host/usbhscsi.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/usblib.h
+usblib/host/usbhscsi.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/usbmsc.h
+usblib/host/usbhscsi.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/host/usbhost.h
+usblib/host/usbhscsi.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/host/usbhmsc.h
+usblib/host/usbhscsi.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/host/usbhscsi.h
 
 ../usblib/host/usbhscsi.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -27,9 +27,9 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_types.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usblib.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/usbmsc.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/host/usbhost.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/host/usbhmsc.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/usblib/host/usbhscsi.h: 
+C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/usblib.h: 
+C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/usbmsc.h: 
+C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/host/usbhost.h: 
+C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/host/usbhmsc.h: 
+C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/usblib/host/usbhscsi.h: 

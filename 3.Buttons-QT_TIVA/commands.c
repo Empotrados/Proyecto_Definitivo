@@ -126,8 +126,6 @@ static int Cmd_gpio_pwm(int argc, char *argv[])
                     UARTprintf("error de comando. gpio//pwm \r\n");
                 }
             }
-
-
             xQueueSend (cola_terminal,&parametro,higherPriorityTaskWoken);   //Escribe en la cola freeRTOS
 
         }
@@ -140,12 +138,17 @@ static int Cmd_gpio_pwm(int argc, char *argv[])
 // ==============================================================================
 static int Cmd_intensity(int argc, char *argv[])
 {
+
     if(argc !=2){
         //si los parametros no son suficientes, muestro ayuda
         UARTprintf(" intensity [X]\r\n");
     }else{
+        PARAM_COMANDO_TERMINAL parametro;
+        parametro.cmd = 1;
         float fIntensity = atof(argv[1]);
+        parametro.intesidad = fIntensity;
         RGBIntensitySet(fIntensity);
+        xQueueSend (cola_terminal,&parametro,higherPriorityTaskWoken);   //Escribe en la cola terminal
     }
 return 0;
 }
@@ -164,8 +167,8 @@ static int Cmd_rgb(int argc, char *argv[])
     }
     else
     {
-
-
+        PARAM_COMANDO_TERMINAL parametro;
+        parametro.cmd = 2;
         arrayRGB[0]=strtoul(argv[1], NULL, 10)<<8;
         arrayRGB[1]=strtoul(argv[2], NULL, 10)<<8;
         arrayRGB[2]=strtoul(argv[3], NULL, 10)<<8;
@@ -177,11 +180,13 @@ static int Cmd_rgb(int argc, char *argv[])
         }
         else{
             RGBColorSet(arrayRGB);
+            parametro.rgb[0] = arrayRGB[0];
+            parametro.rgb[1] = arrayRGB[1];
+            parametro.rgb[2] = arrayRGB[2];
+            xQueueSend (cola_terminal,&parametro,higherPriorityTaskWoken);   //Escribe en la cola terminal
         }
 
     }
-
-
     return 0;
 }
 
@@ -194,21 +199,29 @@ static int Cmd_led(int argc, char *argv[])
         //Si los parametros no son suficientes o son demasiados, muestro la ayuda
         UARTprintf(" led [color] [on|off]\r\n");
     }else{
-        //seconds = strtoul(argv[1], NULL, 10);
+        PARAM_COMANDO_TERMINAL parametro;
+        parametro.cmd = 3;
 
         if (0==strncmp( argv[2], "on",2))
         {
             if(0==strncmp( argv[1], "verde",5)){
                 UARTprintf("LED verde on \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
+                parametro.led[0] = 1;
+                parametro.led[1] = 1;
             }
             if(0==strncmp( argv[1], "azul",4)){
                 UARTprintf("LED azul on \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
+                parametro.led[0] = 2;
+                parametro.led[1] = 1;
             }
             if(0==strncmp( argv[1], "rojo",4)){
                  UARTprintf("LED rojo on \r\n");
                  GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
+                 parametro.led[0] = 0;
+                 parametro.led[1] = 1;
+
             }
         }
         else if (0==strncmp( argv[2], "off",3))
@@ -216,14 +229,20 @@ static int Cmd_led(int argc, char *argv[])
             if(0==strncmp( argv[1], "verde",5)){
                 UARTprintf("LED verde off \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
+                parametro.led[0] = 1;
+                parametro.led[1] = 0;
             }
             if(0==strncmp( argv[1], "azul",4)){
                 UARTprintf("LED azul off \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
+                parametro.led[0] = 2;
+                parametro.led[1] = 0;
             }
             if(0==strncmp( argv[1], "rojo",4)){
                 UARTprintf("LED rojo off \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);
+                parametro.led[0] = 0;
+                parametro.led[1] = 0;
             }
         }
         else
@@ -231,10 +250,8 @@ static int Cmd_led(int argc, char *argv[])
             //Si el parametro no es correcto, muestro la ayuda
             UARTprintf(" led [on|off]\r\n");
         }
-
+        xQueueSend (cola_terminal,&parametro,higherPriorityTaskWoken); //Escribe en la cola terminal
     }
-
-
     return 0;
 }
 

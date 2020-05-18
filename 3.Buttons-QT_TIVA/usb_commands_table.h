@@ -74,8 +74,8 @@ typedef struct{
 typedef struct{
     uint8_t cmd;
     uint8_t modo;
-    uint8_t intesidad;
-    uint8_t rgb[3];
+    float intesidad;
+    uint32_t rgb[3];
     uint8_t led[2];
 } PACKED PARAM_COMANDO_TERMINAL;
 
