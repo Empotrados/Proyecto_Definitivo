@@ -43,6 +43,7 @@ typedef union{
         uint8_t fBlue:1;
     } PACKED leds;
     uint8_t  ui8Valor;
+    uint8_t modoEco;
 } PACKED PARAM_COMANDO_LEDS;
 
 typedef struct {

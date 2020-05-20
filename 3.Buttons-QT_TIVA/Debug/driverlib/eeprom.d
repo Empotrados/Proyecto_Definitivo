@@ -10,16 +10,16 @@ driverlib/eeprom.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/inc
 driverlib/eeprom.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h
 driverlib/eeprom.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h
 driverlib/eeprom.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_eeprom.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_flash.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_ints.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_sysctl.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_types.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/debug.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/flash.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/interrupt.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/sysctl.h
-driverlib/eeprom.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/eeprom.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_eeprom.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_flash.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_sysctl.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/flash.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h
+driverlib/eeprom.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/eeprom.h
 
 ../driverlib/eeprom.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -31,13 +31,13 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_types.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_eeprom.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_flash.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_ints.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_sysctl.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/debug.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/flash.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/eeprom.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_eeprom.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_flash.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_sysctl.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/flash.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/eeprom.h: 

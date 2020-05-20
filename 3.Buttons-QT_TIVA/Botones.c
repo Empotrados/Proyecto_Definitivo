@@ -65,7 +65,7 @@ uint32_t g_ui32CPUUsage;
 uint32_t g_ui32SystemClock;
 
 SemaphoreHandle_t mutexUSB;
-SemaphoreHandle_t miSemaforo = NULL,semaforoTraza;
+SemaphoreHandle_t miSemaforo = NULL,semaforoEnergia;
 xQueueHandle cola_freertos;
 xQueueHandle cola_temperatura;
 xQueueHandle cola_hora;
@@ -224,36 +224,78 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				    PARAM_COMANDO_LEDS parametro;
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
 				    {
-
+				        UARTprintf(" no toques los cojones %d \r\n",parametro.modoEco);
 				        if(parametro.leds.fRed==1){
-				            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
-				            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                               UARTprintf(" led rojo (gpio) encendido \r\n");
+				            if(parametro.modoEco==0){//no esta activado moco eco
+				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
+				                if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                   UARTprintf(" led rojo (gpio) encendido \r\n");
+                                }
+				            }else{//modo eco activo
+				                if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
+				                    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
+                                       if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                          UARTprintf(" led rojo (gpio) encendido en modo eco\r\n");
+                                       }
+				                }
 				            }
+
+
 				        }else{
 				            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);
+				            if(parametro.modoEco==1){
+				            xSemaphoreGive(semaforoEnergia);
+				            }
 				             if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                                UARTprintf(" led rojo (gpio) apagado \r\n");
 				             }
 				        }
 				        if(parametro.leds.fGreen==1){
-                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
-                            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                               UARTprintf(" led verde (gpio) encendido \r\n");
-                            }
+
+				            if(parametro.modoEco==0){//no esta activado moco eco
+				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
+                                if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                   UARTprintf(" led verde (gpio) encendido \r\n");
+                                }
+				            }else{//modo eco activo
+				                if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
+				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
+                                    if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                    UARTprintf(" led verde (gpio) encendido en modo eco \r\n");
+                                    }
+				                }
+				            }
+
+
                         }else{
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
+                            if(parametro.modoEco==1){
+                                xSemaphoreGive(semaforoEnergia);
+                            }
 				            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                                UARTprintf(" led verde (gpio) apagado \r\n");
                             }
                         }
 				        if(parametro.leds.fBlue==1){
-                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
-                            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                               UARTprintf(" led azul (gpio) encendido \r\n");
-                            }
+				            if(parametro.modoEco==0){//no esta activado moco eco
+				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
+                                if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                   UARTprintf(" led azul (gpio) encendido \r\n");
+                                }
+				            }else{//eco activo
+				                if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
+                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
+                                    if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                    UARTprintf(" led azul (gpio) encendido en modo eco \r\n");
+                                    }
+                                }
+				            }
+
                         }else{
                             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
+                            if(parametro.modoEco==1){
+                                xSemaphoreGive(semaforoEnergia);
+                            }
                             if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                                UARTprintf(" led azul (gpio) apagado \r\n");
                             }
@@ -667,6 +709,7 @@ int main(void)
 
     miSemaforo = xSemaphoreCreateBinary();
 
+    semaforoEnergia = xSemaphoreCreateCounting(2,0);
 
 
 

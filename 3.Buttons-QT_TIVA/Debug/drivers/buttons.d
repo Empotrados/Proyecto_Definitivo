@@ -10,15 +10,15 @@ drivers/buttons.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/incl
 drivers/buttons.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h
 drivers/buttons.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h
 drivers/buttons.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_types.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_memmap.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_gpio.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/sysctl.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/rom.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/rom_map.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/pin_map.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/gpio.h
-drivers/buttons.obj: C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/drivers/buttons.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_gpio.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom_map.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/pin_map.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/gpio.h
+drivers/buttons.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/drivers/buttons.h
 
 ../drivers/buttons.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -30,12 +30,12 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_types.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_memmap.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/inc/hw_gpio.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/rom.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/rom_map.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/pin_map.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/driverlib/gpio.h: 
-C:/Users/Sergi/git/Proyecto_Definitivo2/3.Buttons-QT_TIVA/drivers/buttons.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_gpio.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/sysctl.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/rom_map.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/pin_map.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/gpio.h: 
+C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/drivers/buttons.h: 

@@ -242,7 +242,7 @@ static int Cmd_led(int argc, char *argv[])
                 UARTprintf("LED rojo off \r\n");
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);
                 parametro.led[0] = 0;
-                parametro.led[1] = 0; // uoo
+                parametro.led[1] = 0;
             }
         }
         else
