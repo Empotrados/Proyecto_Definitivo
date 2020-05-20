@@ -10,8 +10,8 @@ usblib/usbulpi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/inclu
 usblib/usbulpi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h
 usblib/usbulpi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h
 usblib/usbulpi.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h
-usblib/usbulpi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
-usblib/usbulpi.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/usb.h
+usblib/usbulpi.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
+usblib/usbulpi.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/usb.h
 usblib/usbulpi.obj: ../usblib/usbulpi.h
 
 ../usblib/usbulpi.c: 
@@ -24,6 +24,6 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_types.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/usb.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/usb.h: 
 ../usblib/usbulpi.h: 

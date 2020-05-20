@@ -156,7 +156,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
     uint8_t ui8Command;
     void *ptrtoreceivedparam; // <---?
 	uint32_t ui32Errors=0;
-	uint32_t apagado[3]={0,0,0};
+
 
 	/* The parameters are not used. */
 	( void ) pvParameters;
@@ -219,198 +219,192 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                         break;
 					}
 					break;
-				case COMANDO_LEDS:
+				case COMANDO_LEDS: //comando que cambia los leds en modo GPIO
 				{
 				    PARAM_COMANDO_LEDS parametro;
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
 				    {
-				        UARTprintf(" no toques los cojones %d \r\n",parametro.modoEco);
-				        if(parametro.leds.fRed==1){
-				            if(parametro.modoEco==0){//no esta activado moco eco
-				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
-				                if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                                   UARTprintf(" led rojo (gpio) encendido \r\n");
-                                }
-				            }else{//modo eco activo
-				                if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
-				                    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
-                                       if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                                          UARTprintf(" led rojo (gpio) encendido en modo eco\r\n");
-                                       }
-				                }
-				            }
-
-
-				        }else{
-				            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);
-				            if(parametro.modoEco==1){
-				            xSemaphoreGive(semaforoEnergia);
-				            }
-				             if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                               UARTprintf(" led rojo (gpio) apagado \r\n");
-				             }
-				        }
-				        if(parametro.leds.fGreen==1){
-
-				            if(parametro.modoEco==0){//no esta activado moco eco
-				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
-                                if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                                   UARTprintf(" led verde (gpio) encendido \r\n");
-                                }
-				            }else{//modo eco activo
-				                if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
-				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
-                                    if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                                    UARTprintf(" led verde (gpio) encendido en modo eco \r\n");
-                                    }
-				                }
-				            }
-
-
-                        }else{
-                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
-                            if(parametro.modoEco==1){
-                                xSemaphoreGive(semaforoEnergia);
-                            }
-				            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                               UARTprintf(" led verde (gpio) apagado \r\n");
-                            }
-                        }
-				        if(parametro.leds.fBlue==1){
-				            if(parametro.modoEco==0){//no esta activado moco eco
-				                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
-                                if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                                   UARTprintf(" led azul (gpio) encendido \r\n");
-                                }
-				            }else{//eco activo
-				                if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
-                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
-                                    if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                                    UARTprintf(" led azul (gpio) encendido en modo eco \r\n");
-                                    }
-                                }
-				            }
-
-                        }else{
-                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
-                            if(parametro.modoEco==1){
-                                xSemaphoreGive(semaforoEnergia);
-                            }
+				        if(parametro.leds.fRed==1){ //si el check esta activado, encenderemos el led
+                           if(parametro.leds.eco==0){ //no esta activado moco eco
+                               GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1); //encendemos led ROJO en modo gpio
+                               if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                  UARTprintf(" led rojo (gpio) encendido \r\n"); //Escribe en modo TRAZA
+                               }
+                           }else{//modo eco activo
+                               if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){ //semaforo del modo energia
+                                   GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1);
+                                      if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                         UARTprintf(" led rojo (gpio) encendido en modo eco\r\n"); //Escribe en modo TRAZA
+                                      }
+                               }
+                           }
+                       }else{ //el check esta desactivado y apagamos el led
+                           GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);//apaga el led ROJO
+                           if(parametro.leds.eco==1){//si estamos en modo energia...
+                           xSemaphoreGive(semaforoEnergia);//liberamos un hueco del semaforo
+                           }
                             if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                               UARTprintf(" led azul (gpio) apagado \r\n");
+                              UARTprintf(" led rojo (gpio) apagado \r\n");//escribe en modo traza
                             }
+                       }
+                       if(parametro.leds.fGreen==1){
 
-                        }
+                           if(parametro.leds.eco==0){//no esta activado moco eco
+                               GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
+                               if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                  UARTprintf(" led verde (gpio) encendido \r\n");
+                               }
+                           }else{//modo eco activo
+                               if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
+                               GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
+                                   if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                   UARTprintf(" led verde (gpio) encendido en modo eco \r\n");
+                                   }
+                               }
+                           }
+                       }else{
+                           GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
+                           if(parametro.leds.eco==1){
+                               xSemaphoreGive(semaforoEnergia);
+                           }
+                           if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                              UARTprintf(" led verde (gpio) apagado \r\n");
+                           }
+                       }
+                       if(parametro.leds.fBlue==1){
+                           if(parametro.leds.eco==0){//no esta activado moco eco
+                               GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
+                               if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                  UARTprintf(" led azul (gpio) encendido \r\n");
+                               }
+                           }else{//eco activo
+                               if(xSemaphoreTake(semaforoEnergia,0)==pdTRUE){
+                               GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
+                                   if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                                   UARTprintf(" led azul (gpio) encendido en modo eco \r\n");
+                                   }
+                               }
+                           }
 
+                       }else{
+                           GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
+                           if(parametro.leds.eco==1){
+                               xSemaphoreGive(semaforoEnergia);
+                           }
+                           if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                              UARTprintf(" led azul (gpio) apagado \r\n");
+                           }
+                       }
 
 				    }else//Error de tamaÃ±o de parÃ¡metro
 				    ui32Errors++; // Tratamiento del error
 				}
 				break;
-				case COMANDO_BRILLO:
+				case COMANDO_BRILLO: //comando que cambia los leds en modo PWM
 				{
 				    PARAM_COMANDO_BRILLO parametro;
 
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0){
-				        RGBColorSet(parametro.valoresBrillo);
+				        RGBColorSet(parametro.valoresBrillo);//enciende los led segun los valores que le llega n en el array
 				        if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                            UARTprintf(" rgb %d %d %d \r\n",parametro.valoresBrillo[0],parametro.valoresBrillo[1],parametro.valoresBrillo[2]);
-                        }
+                        }//escribimos si estamos en modo traza
 				    }else//Error de tamaño de parametro
 				    ui32Errors++; // Tratamiento del error
 				}
 				break;
-				case COMANDO_MODO:
+				case COMANDO_MODO: //nos notifica si estamos en modo GPIO o PWM
 				{
-				    PARAM_COMANDO_MODO parametro;
+				PARAM_COMANDO_MODO parametro;
                 uint8_t modo;
+                uint32_t apagado[3]={0,0,0};
                 if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0){
                     modo= parametro.Vmodo;
-                    if(modo==0){
-                        RGBColorSet(apagado);
-                        RGBDisable();
-                        GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
+                    if(modo==0){//si modo es GPIO...
+                        RGBColorSet(apagado);//apagamos los led
+                        RGBDisable();//quitamos el modo pwm
+                        GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);//activamos gpio
 
                     }else{
-                    RGBEnable();
+                    RGBEnable();//activamos modo pwm
                     }
                 }else//Error de tamaño de parametro
                 ui32Errors++; // Tratamiento del error
 				}
 				break;
-			    case COMANDO_INTRUSION:
+			    case COMANDO_INTRUSION: //nos llega un aviso cuando cambiamos de modo en presencia-intrusion
                 {
                     PARAM_COMANDO_INTRUSION parametro;
                     if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
-                    if(parametro.modo_int==0){
-                        if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                         UARTprintf("Modo sondeo activado:  \r\n");
-                       }
+                    if(parametro.modo_int==0){//Si estamos en modo presencia(sondeo)...
+
                          MAP_GPIOIntDisable(GPIO_PORTF_BASE,ALL_BUTTONS);
                          MAP_IntDisable(INT_GPIOF);//deshabilitamos interrupciones del GPIO
-                      }else{
+                         xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);
+                         if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
+                          UARTprintf("cambiamos a modo presencia  \r\n");//modo traza
+                        }
+
+                      }else{//estamos en modo intrusion(interrupciones)
                           if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-                             UARTprintf("Modo intrusion activado:  \r\n");
+                             UARTprintf("cambiamos a modo intrusion  \r\n");//modo traza
                            }
                             MAP_GPIOIntEnable(GPIO_PORTF_BASE,ALL_BUTTONS);
-                            MAP_IntEnable(INT_GPIOF);
+                            MAP_IntEnable(INT_GPIOF);//habilitamos interrupciones del GPIO
+                            xEventGroupClearBits(FlagsEventos,Sondeo_Flag);
+                            xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag,&higherPriorityTaskWoken);
                             }
                 }
                 break;
-				case COMANDO_SONDEO:
+				case COMANDO_SONDEO://nos llega un aviso de que queremos comprobar los botones en modo presencia
 				{
 
 				    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
-				    xEventGroupSetBits(FlagsEventos, Sondeo_Flag );
-                    if ((i32Status & LEFT_BUTTON)==0)
+				    xEventGroupSetBits(FlagsEventos, Sondeo_Flag );//ativo flag de sondeo
+                    if ((i32Status & LEFT_BUTTON)==0)//boton izq pulsado
                         {
-                            //Activa los flags BUTTON1a_FLAG y BUTTON1b_FLAG
+                            //Activa los flags
                             xEventGroupSetBits(FlagsEventos, izquierda );
                         }
 
-                    if ((i32Status & RIGHT_BUTTON)==0){
-                            //Activa los flags BUTTON2a_FLAG y BUTTON2b_FLAG
+                    if ((i32Status & RIGHT_BUTTON)==0){//boton derecho pulsado
+                            //Activa los flags
                             xEventGroupSetBits(FlagsEventos, derecha );
                         }
 
-                    if ((i32Status & RIGHT_BUTTON)==RIGHT_BUTTON){
-                              //Activa los flags BUTTON2a_FLAG y BUTTON2b_FLAG
+                    if ((i32Status & RIGHT_BUTTON)==RIGHT_BUTTON){//boton derecho no pulsado
+                              //Activa los flags
                               xEventGroupSetBits(FlagsEventos, derecha_OFF  );
                           }
-                    if ((i32Status & LEFT_BUTTON)==LEFT_BUTTON)
+                    if ((i32Status & LEFT_BUTTON)==LEFT_BUTTON)//boton izq no pulsado
                         {
-                            //Activa los flags BUTTON1a_FLAG y BUTTON1b_FLAG
+                            //Activa los flags
                             xEventGroupSetBits(FlagsEventos, izquierda_OFF );
                         }
 
 
 				}break;
 
-			    case COMANDO_TEMP:
+			    case COMANDO_TEMP: //comando que llega cuando cambias de modo en temperatura o le das a comprobar
                 {
                     PARAM_COMANDO_TEMP parametro;
                     if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
-                    if (parametro.modo_temp ==0){//modo peródico
-
-                        TimerEnable(TIMER2_BASE, TIMER_A);//enciendo el timer2
-                    }else{
-                        TimerDisable(TIMER2_BASE, TIMER_A);
-                        if(parametro.comprobar==1){
-                            parametro.comprobar=0;
-                            ADCProcessorTrigger(ADC1_BASE, 1);
+                    if (parametro.modo_temp ==0){//modo periodico
+                        TimerEnable(TIMER2_BASE, TIMER_A);//habilito el timer2
+                    }else{     //modo manual
+                        TimerDisable(TIMER2_BASE, TIMER_A);//deshabilito el timer2
+                        if(parametro.comprobar==1){ //si hemos pulsado el boton de comprobar...
+                            parametro.comprobar=0; //actualizamos el parametro
+                            ADCProcessorTrigger(ADC1_BASE, 1); //usamos adc1 para obtener la temperatura
                         }
-
-
                     }
                 }break;
-			    case COMANDO_HORA:
+			    case COMANDO_HORA: //Te llega cuando pulsas upload en qt
 			    {
 			        PARAM_COMANDO_HORA parametro;
                     if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
 
-                        xQueueSend(cola_hora,&parametro,&higherPriorityTaskWoken);
-
-
+                        xQueueSend(cola_hora,&parametro,portMAX_DELAY);//mandamos el parametro con la hora a la cola
 			    }break;
 
 
@@ -446,40 +440,41 @@ static portTASK_FUNCTION( ButtonsTask, pvParameters ){
     int32_t xEventGroupValue;
 
     while(1){
-        xEventGroupValue=xEventGroupWaitBits(FlagsEventos,Sondeo_Flag|Interrupcion_Flag|izquierda|derecha|izquierda_OFF|derecha_OFF,pdFALSE,pdFALSE,portMAX_DELAY);
+        //miramos si hay algun flag activado...
+        xEventGroupValue=xEventGroupWaitBits(FlagsEventos,izquierda|derecha|izquierda_OFF|derecha_OFF,pdFALSE,pdFALSE,portMAX_DELAY);
         if( ( xEventGroupValue & Sondeo_Flag ) == Sondeo_Flag ){//viene de sondeo
-            parametro.sondeo_interrupcion =0;
-            xEventGroupClearBits(FlagsEventos,Sondeo_Flag);
+            parametro.sondeo_interrupcion =0; //modo presencia
+
         }
         if( ( xEventGroupValue & Interrupcion_Flag ) ==Interrupcion_Flag){
-            parametro.sondeo_interrupcion =1;
-            xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);
+            parametro.sondeo_interrupcion =1; //modo intrusion
+
         }
-        if( ( xEventGroupValue & izquierda ) ==izquierda ){
-            parametro.izq= true;
+        if( ( xEventGroupValue & izquierda ) ==izquierda ){ //comprabamos si el flag izquierda es el activado
+            parametro.izq= true; //notifica a qt si esta pulsado(true) o NO pulsado(false)
             if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
-               UARTprintf(" boton izquierdo pulsado \r\n");
+               UARTprintf(" boton izquierdo pulsado \r\n"); //modo traza
             }
-            xEventGroupClearBits(FlagsEventos,izquierda);
+            xEventGroupClearBits(FlagsEventos,izquierda); //limpiamos el flag que hemos usado
         }
         if( ( xEventGroupValue & derecha ) ==derecha ){
             parametro.der=true;
             if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
-               UARTprintf(" boton derecho pulsado \r\n");
+               UARTprintf(" boton derecho pulsado \r\n");//modo traza
             }
             xEventGroupClearBits(FlagsEventos,derecha);
         }
         if( ( xEventGroupValue & derecha_OFF ) ==derecha_OFF ){
                 parametro.der=false;
                 if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
-                  UARTprintf(" boton derecho NO pulsado \r\n");
+                  UARTprintf(" boton derecho NO pulsado \r\n");//modo traza
                 }
                 xEventGroupClearBits(FlagsEventos,derecha_OFF);
         }
         if( ( xEventGroupValue & izquierda_OFF ) ==izquierda_OFF ){
                 parametro.izq= false;
                 if((xEventGroupValue & Traza_FLAG) == Traza_FLAG ){
-                  UARTprintf(" boton izquierdo NO pulsado \r\n");
+                  UARTprintf(" boton izquierdo NO pulsado \r\n");//modo traza
                 }
                 xEventGroupClearBits(FlagsEventos,izquierda_OFF);
         }
@@ -503,9 +498,9 @@ static portTASK_FUNCTION( TempTask, pvParameters ){
     uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
     int32_t i32Numdatos;
     while(1)
-       {
+       { //si recibimos datos(temperatura) de la cola...
            if (xQueueReceive(cola_temperatura,&parametro.temperatura,portMAX_DELAY)==pdTRUE)
-           {
+           { //los enviamos a qt
                i32Numdatos=create_frame(pui8Frame,COMANDO_TEMP,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
                           if (i32Numdatos>=0)
                           {
@@ -516,7 +511,7 @@ static portTASK_FUNCTION( TempTask, pvParameters ){
 
            }
            if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
-               UARTprintf("temperatura %d �C \r\n",parametro.temperatura);
+               UARTprintf("temperatura %d �C \r\n",parametro.temperatura); //modo traza
            }
 
        }
@@ -525,9 +520,9 @@ static portTASK_FUNCTION( horaTask, pvParameters ){
     PARAM_COMANDO_HORA parametro;
     uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
     int32_t i32Numdatos;
-    if (xQueueReceive(cola_hora,&parametro,portMAX_DELAY)==pdTRUE)
+    if (xQueueReceive(cola_hora,&parametro,portMAX_DELAY)==pdTRUE) //recibimos datos (hora)
      {
-        xTimer = xTimerCreate("TimerSW", 1 * configTICK_RATE_HZ,pdTRUE,NULL,vTimerCallback);
+        xTimer = xTimerCreate("TimerSW", 1 * configTICK_RATE_HZ,pdTRUE,NULL,vTimerCallback); //creamos timer SW de 1s
                 if( xTimer == NULL ){
                     /* The timer was not created. */
                     while(1);
@@ -538,8 +533,8 @@ static portTASK_FUNCTION( horaTask, pvParameters ){
             while(1);
         }
         while(1){
-            xSemaphoreTake(miSemaforo,portMAX_DELAY);
-            parametro.segundo++;
+            xSemaphoreTake(miSemaforo,portMAX_DELAY);//esperamos con un semaforo que es activado por el timer SW
+            parametro.segundo++; //actualizamos todos los datos del parametro
             if(parametro.segundo==60){
                 parametro.segundo=0;
                 parametro.minuto++;
@@ -551,7 +546,7 @@ static portTASK_FUNCTION( horaTask, pvParameters ){
                     }
                 }
             }
-
+            //enviamos a QT..
             i32Numdatos=create_frame(pui8Frame,COMANDO_HORA,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
               if (i32Numdatos>=0)
               {
@@ -570,12 +565,12 @@ static portTASK_FUNCTION( TerminalTask, pvParameters ){
     PARAM_COMANDO_TERMINAL parametro;
     uint8_t pui8Frame[MAX_FRAME_SIZE];  //Ojo, esto hace que esta tarea necesite bastante pila
     int32_t i32Numdatos;
-    while(1){
+    while(1){ //Si recibimos de la cola que viene de los comandos del terminal...
         if (xQueueReceive(cola_terminal,&parametro,portMAX_DELAY)==pdTRUE){
             i32Numdatos=create_frame(pui8Frame,COMANDO_TERMINAL,&parametro,sizeof(parametro),MAX_FRAME_SIZE);
           if (i32Numdatos>=0)
           {
-              xSemaphoreTake(mutexUSB,portMAX_DELAY);
+              xSemaphoreTake(mutexUSB,portMAX_DELAY);  //los enviamos a QT
               send_frame(pui8Frame,i32Numdatos);
               xSemaphoreGive(mutexUSB);
           }
@@ -659,33 +654,28 @@ int main(void)
     //IntMasterEnable();
 
 
-    //CONFIGURACION ADC por sw
-        //SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);   // Habilita ADC1
-       // SysCtlPeripheralSleepEnable(SYSCTL_PERIPH_ADC1);
-        ADCSequenceDisable(ADC1_BASE, 1); // Deshabilita el secuenciador 0 del ADC1 para su configuracion
+    //CONFIGURACION ADC por SW
+
+        ADCSequenceDisable(ADC1_BASE, 1); // Deshabilita el secuenciador 1 del ADC1 para su configuracion
         // Tasa de muestreo es 1Msps por defecto. Se puede cambiar con ADCClockConfigSet (eligiendo un reloj para el ADC)
         // Disparo de muestreo por instrucciones de timer
         //ADCSequenceConfigure(ADCX_BASE,SSX,DISPARO,PRIORIDAD)
         ADCSequenceConfigure(ADC1_BASE, 1, ADC_TRIGGER_PROCESSOR, 0);//configuramos el adc para que el sequenciador 0 del adc1 este controlado por timer
 
         ADCSequenceStepConfigure(ADC1_BASE, 1, 0,ADC_CTL_TS | ADC_CTL_IE | ADC_CTL_END);//configuro el paso 0 de sequenciador 0 del adc1 mire por el canal 1 por el sensor de temperatura que genere interrupcion y qe es el paso final
-        //TimerControlTrigger(TIMER2_BASE,TIMER_A,true);//para configurar que el disparo del adc sea controlado por el timer 2
-        //ADCHardwareOversampleConfigure(ADC1_BASE, 64);/*promediado hardware de 64*/
-        IntEnable( INT_ADC1SS1);//habilito interrupcion del sequencer 0
+
+        IntEnable( INT_ADC1SS1);//habilito interrupcion del sequencer 1
         // Tras configurar el secuenciador, se vuelve a habilitar
-        ADCSequenceEnable(ADC1_BASE, 1);//ya configurada habilito sequencia 0 del adc1
+        ADCSequenceEnable(ADC1_BASE, 1);//ya configurada habilito sequencia 1 del adc1
         ADCIntEnable(ADC1_BASE, 1);
 
 
 
 
 
-
-
-
-    /**                                             Creacion de recursos IPC                                            **/
+    /**      Creacion de recursos IPC               **/
     // Cola para el envio del estado del puertoF (botones)
-    cola_freertos=xQueueCreate(3,sizeof(int32_t));  //espacio para 3items de tamaÃ±o ulong
+    cola_freertos=xQueueCreate(3,sizeof(int32_t));  //espacio para 3items de tam ulong
     if (NULL==cola_freertos)
         while(1);
     // Cola para el envio de la temperatura
@@ -707,19 +697,19 @@ int main(void)
 
         while(1);
 
-    miSemaforo = xSemaphoreCreateBinary();
+    miSemaforo = xSemaphoreCreateBinary(); //Creamos el semaforo para la tarea de la hora
 
-    semaforoEnergia = xSemaphoreCreateCounting(2,0);
-
-
+    semaforoEnergia = xSemaphoreCreateCounting(2,0); //semaforo contador para el modo energia de los botones
 
 
-    RGBDisable();
-    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);
+
+
+    RGBDisable(); //partimos en modo gpio, asi que desactivamos el rgb
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3); //habilitamos GPIO
 
     /**                                              Creacion de tareas                                                 **/
 
-    // Inicializa el sistema de depuración por terminal UART
+    // Inicializa el sistema de depuracion por terminal UART
     if (initCommandLine(512,tskIDLE_PRIORITY + 1) != pdTRUE)
     {
         while(1);
@@ -784,13 +774,11 @@ void ADCSequence0Handler (void){
     signed portBASE_TYPE higherPriorityTaskWoken=pdFALSE;   //Hay que inicializarlo a False!!
     uint32_t ui32TempValueC;
     ADCIntClear(ADC1_BASE, 0); // Limpia el flag de interrupcion del ADC
-    //ADCIntClear(ADC1_BASE, 1); // Limpia el flag de interrupcion del ADC
      //leemos los datos del secuenciador
      ADCSequenceDataGet(ADC1_BASE, 0, &ui32TempValueC);
-    // ADCSequenceDataGet(ADC1_BASE, 1, &ui32TempValueC);
      // Y lo convertimos a grados centigrados y Farenheit, usando la formula indicada en el Data Sheet
      ui32TempValueC = (1475 - ((2475 * ui32TempValueC)) / 4096)/10;
-     xQueueSendFromISR (cola_temperatura,&ui32TempValueC,&higherPriorityTaskWoken);
+     xQueueSendFromISR (cola_temperatura,&ui32TempValueC,&higherPriorityTaskWoken); //enviamos los datos a la cola
      portEND_SWITCHING_ISR(higherPriorityTaskWoken);
 }
 void ADCSequence1Handler (void){
@@ -801,15 +789,15 @@ void ADCSequence1Handler (void){
       ADCSequenceDataGet(ADC1_BASE, 1, &ui32TempValueC);
      // Y lo convertimos a grados centigrados y Farenheit, usando la formula indicada en el Data Sheet
      ui32TempValueC = (1475 - ((2475 * ui32TempValueC)) / 4096)/10;
-     xQueueSendFromISR (cola_temperatura,&ui32TempValueC,&higherPriorityTaskWoken);
+     xQueueSendFromISR (cola_temperatura,&ui32TempValueC,&higherPriorityTaskWoken);//enviamos los datos a la cola
      portEND_SWITCHING_ISR(higherPriorityTaskWoken);
 
 }
-void GPIOFIntHandler(void)
+void GPIOFIntHandler(void) //interrupcion de los botones
 {
 
     int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
-
+    //comprobamos el estado de los botones y activamos su flag...
     if ((i32Status & LEFT_BUTTON)==0){
         xEventGroupSetBitsFromISR(FlagsEventos,izquierda,&higherPriorityTaskWoken);
     }
@@ -822,7 +810,7 @@ void GPIOFIntHandler(void)
     if((i32Status & LEFT_BUTTON)==LEFT_BUTTON){
             xEventGroupSetBitsFromISR(FlagsEventos,izquierda_OFF,&higherPriorityTaskWoken);
     }
-    xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag,&higherPriorityTaskWoken);
+
     MAP_GPIOIntClear(GPIO_PORTF_BASE,ALL_BUTTONS);              //limpiamos flags
     //Cesion de control de CPU si se ha despertado una tarea de mayor prioridad
     portEND_SWITCHING_ISR(higherPriorityTaskWoken);

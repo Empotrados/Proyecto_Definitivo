@@ -10,13 +10,13 @@ driverlib/comp.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/inclu
 driverlib/comp.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h
 driverlib/comp.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h
 driverlib/comp.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_comp.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/comp.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h
-driverlib/comp.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_comp.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/comp.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h
+driverlib/comp.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h
 
 ../driverlib/comp.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h: 
@@ -28,10 +28,10 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_types.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_types.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/machine/_stdint.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/sys/_stdint.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_comp.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/comp.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_comp.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_ints.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_memmap.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/inc/hw_types.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/comp.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/debug.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/driverlib/interrupt.h: 

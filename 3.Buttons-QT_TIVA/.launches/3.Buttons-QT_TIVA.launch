@@ -10,7 +10,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.Tiva TM4C1236H6PM.ccxml.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="3.Buttons-QT_TIVA"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.Tiva TM4C123GH6PM.ccxml.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="3.Buttons-QT_TIVA"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:3.Buttons-QT_TIVA}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Tiva TM4C1233H6PZ.ccxml.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="C:/Users\Sergi\git\Proyecto_Definitivo2\3.Buttons-QT_TIVA\Debug\3.Buttons-QT_TIVA.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Tiva TM4C1233H6PZ.ccxml.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="C:/Users\mario\AppData\Roaming\SPB_Data\git\empotrados\Proyecto_Definitivo\3.Buttons-QT_TIVA\Debug\3.Buttons-QT_TIVA.out"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Tiva TM4C1236H6PM.ccxml.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="C:/Users\p-l-b\git\Proyecto_Definitivo\3.Buttons-QT_TIVA\Debug\3.Buttons-QT_TIVA.out"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.Tiva TM4C123GH6PM.ccxml.Stellaris In-Circuit Debug Interface/CORTEX_M4_0" value="C:/Users\p-l-b\workspace_v9\3.Buttons-QT_TIVA\Debug\3.Buttons-QT_TIVA.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">

@@ -13,7 +13,7 @@ utils/cmdline.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/includ
 utils/cmdline.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h
 utils/cmdline.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/_ti_config.h
 utils/cmdline.obj: C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/linkage.h
-utils/cmdline.obj: C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/utils/cmdline.h
+utils/cmdline.obj: C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/utils/cmdline.h
 
 ../utils/cmdline.c: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdint.h: 
@@ -28,4 +28,4 @@ C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdbool.h:
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/string.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/_ti_config.h: 
 C:/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/linkage.h: 
-C:/Users/p-l-b/git/Proyecto_Definitivo/3.Buttons-QT_TIVA/utils/cmdline.h: 
+C:/Users/mario/AppData/Roaming/SPB_Data/git/empotrados/Proyecto_Definitivo/3.Buttons-QT_TIVA/utils/cmdline.h: 
