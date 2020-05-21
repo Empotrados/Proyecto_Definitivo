@@ -140,7 +140,7 @@ static int Cmd_intensity(int argc, char *argv[])
 {
 
     if(argc !=2){
-        //si los parametros no son suficientes, muestro ayuda
+        //si los parametros no son suficientes, muestro ayuda..
         UARTprintf(" intensity [X]\r\n");
     }else{
 
