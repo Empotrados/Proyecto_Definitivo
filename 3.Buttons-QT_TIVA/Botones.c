@@ -351,7 +351,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                            }
                             MAP_GPIOIntEnable(GPIO_PORTF_BASE,ALL_BUTTONS);
                             MAP_IntEnable(INT_GPIOF);//habilitamos interrupciones del GPIO
-                            xEventGroupClearBits(FlagsEventos,Sondeo_Flag);
+                            xEventGroupClearBits(FlagsEventos,Sondeo_Flag); //limpiamos flag de presencia y activamos el de intrusion
                             xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag,&higherPriorityTaskWoken);
                             }
                 }

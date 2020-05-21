@@ -143,12 +143,12 @@ static int Cmd_intensity(int argc, char *argv[])
         //si los parametros no son suficientes, muestro ayuda
         UARTprintf(" intensity [X]\r\n");
     }else{
-        PARAM_COMANDO_TERMINAL parametro;
+
         parametro.cmd = 1;
         float fIntensity = atof(argv[1]);
-        parametro.intesidad = fIntensity;
+
         RGBIntensitySet(fIntensity);
-        xQueueSend (cola_terminal,&parametro,higherPriorityTaskWoken);   //Escribe en la cola terminal
+
     }
 return 0;
 }
