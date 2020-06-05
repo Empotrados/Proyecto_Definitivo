@@ -144,7 +144,7 @@ static int Cmd_intensity(int argc, char *argv[])
         UARTprintf(" intensity [X]\r\n");
     }else{
 
-        parametro.cmd = 1;
+
         float fIntensity = atof(argv[1]);
 
         RGBIntensitySet(fIntensity);
