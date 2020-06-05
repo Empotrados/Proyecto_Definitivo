@@ -228,33 +228,23 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				        if(parametro.leds.fRed==1){ //si el check esta activado, encenderemos el led
 
                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1); //encendemos led ROJO en modo gpio
-
-
                        }else{ //el check esta desactivado y apagamos el led
                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);//apaga el led ROJO
-
                        }
 				        }
 				        if(parametro.leds.led[1]==1){
                        if(parametro.leds.fGreen==1){
-
-
                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,GPIO_PIN_3);
-
                        }else{
                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
-
                        }
 				        }
 				        if(parametro.leds.led[2]==1){
                        if(parametro.leds.fBlue==1){
 
                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
-
-
                        }else{
                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
-
                        }
 				        }
 				    }else//Error de tamaÃ±o de parÃ¡metro
@@ -301,7 +291,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 
                          MAP_GPIOIntDisable(GPIO_PORTF_BASE,ALL_BUTTONS);
                          MAP_IntDisable(INT_GPIOF);//deshabilitamos interrupciones del GPIO
-                         xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);
+
                          if(xEventGroupWaitBits(FlagsEventos,Traza_FLAG,pdFALSE,pdFALSE,0 * configTICK_RATE_HZ)==(Traza_FLAG)){
                           UARTprintf("cambiamos a modo presencia  \r\n");//modo traza
                         }
@@ -312,8 +302,8 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                            }
                             MAP_GPIOIntEnable(GPIO_PORTF_BASE,ALL_BUTTONS);
                             MAP_IntEnable(INT_GPIOF);//habilitamos interrupciones del GPIO
-                            xEventGroupClearBits(FlagsEventos,Sondeo_Flag); //limpiamos flag de presencia y activamos el de intrusion
-                            xEventGroupSetBitsFromISR(FlagsEventos,Interrupcion_Flag,&higherPriorityTaskWoken);
+
+
                             }
                 }
                 break;
@@ -321,7 +311,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				{
 
 				    int32_t i32Status = MAP_GPIOPinRead(GPIO_PORTF_BASE,ALL_BUTTONS);
-				    xEventGroupSetBits(FlagsEventos, Sondeo_Flag );//ativo flag de sondeo
+
                     if ((i32Status & LEFT_BUTTON)==0)//boton izq pulsado
                         {
                             //Activa los flags
@@ -342,7 +332,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                             //Activa los flags
                             xEventGroupSetBits(FlagsEventos, izquierda_OFF );
                         }
-
+                    xEventGroupSetBits(FlagsEventos, Sondeo_Flag );//ativo flag de sondeo
 
 				}break;
 
@@ -402,8 +392,16 @@ static portTASK_FUNCTION( ButtonsTask, pvParameters ){
 
     while(1){
         //miramos si hay algun flag activado...
-        xEventGroupValue=xEventGroupWaitBits(FlagsEventos,Interrupcion_Flag,pdFALSE,pdFALSE,portMAX_DELAY);
-        xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);
+        xEventGroupValue=xEventGroupWaitBits(FlagsEventos,Interrupcion_Flag|Sondeo_Flag,pdFALSE,pdFALSE,portMAX_DELAY);
+        if( ( xEventGroupValue & Sondeo_Flag ) == Sondeo_Flag ){//viene de sondeo
+                    parametro.sondeo_interrupcion =0; //modo presencia
+                    xEventGroupClearBits(FlagsEventos,Sondeo_Flag); //limpiamos flag de presencia
+                }
+                if( ( xEventGroupValue & Interrupcion_Flag ) ==Interrupcion_Flag){
+                    parametro.sondeo_interrupcion =1; //modo intrusion
+                    xEventGroupClearBits(FlagsEventos,Interrupcion_Flag);
+                }
+
         if( ( xEventGroupValue & izquierda ) ==izquierda ){ //comprabamos si el flag izquierda es el activado
             parametro.izq= true; //notifica a qt si esta pulsado(true) o NO pulsado(false)
 
