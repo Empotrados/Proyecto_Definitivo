@@ -224,6 +224,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
 				    PARAM_COMANDO_LEDS parametro;
 				    if (check_and_extract_command_param(ptrtoreceivedparam, i32Numdatos, sizeof(parametro),&parametro)>0)
 				    {
+				        if(parametro.leds.led[0]==1){
 				        if(parametro.leds.fRed==1){ //si el check esta activado, encenderemos el led
 
                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,GPIO_PIN_1); //encendemos led ROJO en modo gpio
@@ -233,6 +234,8 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1,0);//apaga el led ROJO
 
                        }
+				        }
+				        if(parametro.leds.led[1]==1){
                        if(parametro.leds.fGreen==1){
 
 
@@ -242,6 +245,8 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3,0);
 
                        }
+				        }
+				        if(parametro.leds.led[2]==1){
                        if(parametro.leds.fBlue==1){
 
                                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,GPIO_PIN_2);
@@ -251,7 +256,7 @@ static portTASK_FUNCTION( CommandProcessingTask, pvParameters ){
                            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2,0);
 
                        }
-
+				        }
 				    }else//Error de tamaÃ±o de parÃ¡metro
 				    ui32Errors++; // Tratamiento del error
 				}

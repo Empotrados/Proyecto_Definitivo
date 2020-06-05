@@ -41,7 +41,7 @@ typedef union{
         uint8_t fRed:1;
         uint8_t fGreen:1;
         uint8_t fBlue:1;
-        uint8_t eco;
+        uint8_t led[3];
     } PACKED leds;
 
 } PACKED PARAM_COMANDO_LEDS;
